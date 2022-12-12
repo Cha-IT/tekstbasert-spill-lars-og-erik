@@ -1,12 +1,7 @@
 import random as rd
+xstart = 0
+ystart = 0
 
-N = "North"
-W = "West"
-S = "South"
-E = "East"
-
-posisjonx = 0
-posisjony = 0
 
 class Spill:
     def __init__(self,startsene):    
@@ -21,7 +16,7 @@ class Spill:
 
 
 class Sener:
-    def __init__(self ):
+    def __init__(self,xverdi,yverdi ):
         self.poi = {}
     def adpoi(self, poi, beskrivelse):
         
@@ -40,12 +35,11 @@ stuepoi = {
     "Stuebord":"Besrivelse av hva som ligger på stuebordet"
 }
 
-start.adpois(stuepoi)
-start.visInfo()
-
+stue = Sener(0,0)
+startrom = Sener(0,1)
 
 #Fiender?
-class gnom(object):
+class gnom(object):     #Ikke bruk class.... sier hans
     name = "Gnomeo"
     health = 20
     strength = 3
@@ -60,28 +54,33 @@ def attack():
 
     angrip = {"1":10,
         "2":20,         #ordbok?
-        "3":50}
+        "3":50,
+        "0":0}
 
     if valg == "1":
         angrep = "Normal attack"
         print("Du slår fienden")
-        print(f"Fienden mister 10 liv og har igjen {gnom.health - 10} liv")
+        print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
     
     elif attack == "2":
         angrep = "special attack"
         print("Du sparker fienden")
-        print(f"fienden mister 20 liv og har igjen {gnom.health - to} liv")
+        print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
     
     elif attack == "3":
         angrep = "super attack"
         print("Du løper mot fienden for å angripe alt du kan")
         sjanse = rd.randint(1,4)
-        if sjanse == 1 or sjanse == 2 or sjanse == 3:
+        if sjanse != 4:
             print("Du slår og sparker fienden med en syk kombo")
-            print(f"fienden mister 50 liv og har igjen {gnom.health - tre} liv")
+            print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
         else:
             print("du dreit deg ut")
-    
+            valg = 0
+
+    else:
+        print("velg bare 1, 2 eller 3")
+        attack()
 
     
 
