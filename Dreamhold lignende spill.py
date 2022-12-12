@@ -53,11 +53,30 @@ soverom = {
     "s":"stue",
     "w":"ingenting"
 }
+kjøkkenrom = {
+    "n":"ingenting",
+    "e":"ingenting",
+    "s":"ingenting",
+    "w":"stue"
+}
+kottrom = {
+    "n":"stue",
+    "e":"ingenting",
+    "s":"ingenting",
+    "w":"ingenting"   
+}
+badrom = {
+    "n":"ingenting",
+    "e":"stue",
+    "s":"ingenting",
+    "w":"ingenting"
+}
 
 #start.adpoi("TV","Besrivelse av hva som er på tv-en")
 stuepoi = {
     "TV":"Besrivelse av hva som er på tv-en",
-    "Stuebord":"Besrivelse av hva som ligger på stuebordet"
+    "Stuebord":"Besrivelse av hva som ligger på stuebordet",
+    "Terning":"Beskrivelse av terning på stuebordet"
 }
 
 
