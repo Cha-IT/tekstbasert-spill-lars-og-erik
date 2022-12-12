@@ -1,6 +1,6 @@
 import random as rd
 xstart = 0
-ystart = 0
+ystart = 1
 input = input("")
 
 class Spill:
@@ -11,18 +11,26 @@ class Spill:
         print("")
     def go(self, rettning):
         pass
-    if input == n:
+    if input == "n":
+        ystart = ystart+1
+    if input == "e":
         xstart = xstart+1
-    if input == 
+    if input == "s":
+        ystart = ystart-1
+    if input == "w":
+        xstart = xstart-1
+    if else:
+        print()
     def interact(self, poi):
         pass
 
 
 class Sener:
-    def __init__(self,xverdi,yverdi,poi={}):
+    def __init__(self,xverdi,yverdi,poi={},naborom = {}):
         self.poi = poi
         self.xverdi = xverdi
         self.yverdi = yverdi
+        self.naborom = naborom 
     def adpoi(self, poi, beskrivelse):
         
         self.poi[poi] = beskrivelse
@@ -33,6 +41,19 @@ class Sener:
     def visInfo(self):
         print(self.poi)
 
+stuerom = {
+    "n":"soverom",
+    "e":"kjøkken",
+    "s":"kott",
+    "w":"bad"
+}
+soverom = {
+    "n":"ingenting",
+    "e":"ingenting",
+    "s":"stue",
+    "w":"ingenting"
+}
+
 #start.adpoi("TV","Besrivelse av hva som er på tv-en")
 stuepoi = {
     "TV":"Besrivelse av hva som er på tv-en",
@@ -40,9 +61,6 @@ stuepoi = {
 }
 
 
-stue = Sener(0,0,stuepoi)
-startrom = Sener(0,1)
-kjøkken = Sener(0,1) 
 #Fiender?
 class gnom(object):     #Ikke bruk class.... sier hans
     name = "Gnomeo"
