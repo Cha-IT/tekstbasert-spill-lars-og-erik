@@ -16,8 +16,10 @@ class Spill:
 
 
 class Sener:
-    def __init__(self,xverdi,yverdi ):
+    def __init__(self,xverdi,yverdi, poi ):
         self.poi = {}
+        self.xverdi = xverdi
+        self.yverdi = yverdi
     def adpoi(self, poi, beskrivelse):
         
         self.poi[poi] = beskrivelse
@@ -28,7 +30,6 @@ class Sener:
     def visInfo(self):
         print(self.poi)
 
-start=Sener()
 #start.adpoi("TV","Besrivelse av hva som er på tv-en")
 stuepoi = {
     "TV":"Besrivelse av hva som er på tv-en",
