@@ -1,7 +1,6 @@
 import random as rd
 startrom = "Soverom"
 playerinput = input("Hva gjør du?\n skriv hær: ")
-
 class Spiller:
     def __init__(self,poi = {}):
         self.poi = poi
@@ -35,10 +34,12 @@ class Sener:
         self.poi = poi
         for i in poi:
             print(f"Du ser rundt i rommet. Det du legger merke til er {i}")
-                
+    def addnaboRom(self, naborom ):
+        self.naborom=naborom
+
 stuerom = {
-    "n":"soverom",
-    "e":"kjøkken",
+    "n":soverom,
+    "e":kjøkken,
     "s":"kott",
     "w":"bad"
 }
@@ -86,14 +87,47 @@ badpoi = {
     "Tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
     "Tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til."
 }
+kottpoi = {
+    "Gnom":"Det står en gnom mitt på rommet. Hvorfor står det en gnom midt på rommet. Den ser ikke snill ut."
+}
 
-soverom = Sener(soverompoi,soverom)
-stue = Sener(stuepoi, stuerom)
-kjøkken = Sener(kjøkkenpoi,kjøkkenrom)
-kott = Sener({},kottrom )
+soverom = Sener(soverompoi)
+stue = Sener(stuepoi)
+kjøkken = Sener(kjøkkenpoi)
+kott = Sener(kottpoi)
 bad = Sener(badpoi,badrom)
 
 
+stuerom = {
+    "n":soverom,
+    "e":kjøkken,
+    "s":"kott",
+    "w":"bad"
+}
+soverom = {
+    "n":"ingenting",
+    "e":"ingenting",
+    "s":"stue",
+    "w":"ingenting"
+}
+kjøkkenrom = {
+    "n":"ingenting",
+    "e":"ingenting",
+    "s":"ingenting",
+    "w":"stue"
+}
+kottrom = {
+    "n":"stue",
+    "e":"ingenting",
+    "s":"ingenting",
+    "w":"ingenting"   
+}
+badrom = {
+    "n":"ingenting",
+    "e":"stue",
+    "s":"ingenting",
+    "w":"ingenting"
+}
 
 
 #Fiender?
