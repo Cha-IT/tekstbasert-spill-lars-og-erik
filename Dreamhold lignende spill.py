@@ -1,28 +1,19 @@
 import random as rd
-xstart = 0
-ystart = 0
-input = input("")
+startrom = "Soverom"
+playerinput = input("Hva gjør du?\n skriv hær: ")
 
-class Spill:
-    def __init__(self,startsene):    
-        self.sene=startsene
+class Spiller:
+    def __init__(self,poi = {}):
+        self.poi = poi
         """Her finner man hjelp til hvordan man spiller"""
-    def visRom(self):
-        print("")
-    def go(self, rettning):
-        pass
-    if input == n:
-        xstart = xstart+1
-    if input == 
     def interact(self, poi):
-        pass
+        self.poi = poi
 
 
 class Sener:
-    def __init__(self,xverdi,yverdi,poi={}):
+    def __init__(self,poi={},naborom = {}):
         self.poi = poi
-        self.xverdi = xverdi
-        self.yverdi = yverdi
+        self.naborom = naborom 
     def adpoi(self, poi, beskrivelse):
         
         self.poi[poi] = beskrivelse
@@ -33,16 +24,78 @@ class Sener:
     def visInfo(self):
         print(self.poi)
 
-#start.adpoi("TV","Besrivelse av hva som er på tv-en")
-stuepoi = {
-    "TV":"Besrivelse av hva som er på tv-en",
-    "Stuebord":"Besrivelse av hva som ligger på stuebordet"
+    def go(self, rettning, naborom ={}):
+        self.rettning = rettning
+        self.naborom = naborom
+        for i in naborom:
+            if i.value() == "ingenting":
+                print("Du går rett inni veggen, prøv å gå gjennom en dør istedet")
+        
+    def visRom(self, poi={}):
+        self.poi = poi
+        for i in poi:
+            print(f"Du ser rundt i rommet. Det du legger merke til er {i}")
+                
+stuerom = {
+    "n":"soverom",
+    "e":"kjøkken",
+    "s":"kott",
+    "w":"bad"
+}
+soverom = {
+    "n":"ingenting",
+    "e":"ingenting",
+    "s":"stue",
+    "w":"ingenting"
+}
+kjøkkenrom = {
+    "n":"ingenting",
+    "e":"ingenting",
+    "s":"ingenting",
+    "w":"stue"
+}
+kottrom = {
+    "n":"stue",
+    "e":"ingenting",
+    "s":"ingenting",
+    "w":"ingenting"   
+}
+badrom = {
+    "n":"ingenting",
+    "e":"stue",
+    "s":"ingenting",
+    "w":"ingenting"
 }
 
+#start.adpoi("TV","Besrivelse av hva som er på tv-en")
+soverompoi = {
+    "Dør":"Det er en hvit dør sør i rommet for deg. Den ser åpen ut",
+    "Vindu":"Det er vinter, man kan se snøen dale ned og legge seg over gresset."
+    
+}
+stuepoi = {
+    "TV":"Besrivelse av hva som er på tv-en",
+    "Stuebord":"Besrivelse av hva som ligger på stuebordet",
+    "Terning":"Beskrivelse av terning på stuebordet"
+}
+kjøkkenpoi ={
+    "Glass med melk":"Det står et halvfult glass med melk på kjøkkenbenken. Uvist om hvor lenge den har stått der",
+    "Brød":"Brød",
+}
+badpoi = {
+    "Tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
+    "Tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til."
+}
 
-stue = Sener(0,0,stuepoi)
-startrom = Sener(0,1)
-kjøkken = Sener(0,1) 
+soverom = Sener(soverompoi,soverom)
+stue = Sener(stuepoi, stuerom)
+kjøkken = Sener(kjøkkenpoi,kjøkkenrom)
+kott = Sener({},kottrom )
+bad = Sener(badpoi,badrom)
+
+
+
+
 #Fiender?
 class gnom(object):     #Ikke bruk class.... sier hans
     name = "Gnomeo"
