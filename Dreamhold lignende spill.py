@@ -146,12 +146,14 @@ def gnomhelse():
         print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
         enemy.health = enemy.health - angrip[valg]
         gnomhelse()
+
     elif attack == "2":
         angrep = "special attack"
         print("Du sparker fienden")
         print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
         enemy.health = enemy.health - angrip[valg]
         gnomhelse()
+
     elif attack == "3":
         angrep = "super attack"
         print("Du løper mot fienden for å angripe alt du kan")
@@ -166,6 +168,7 @@ def gnomhelse():
             valg = 0
             enemy.health = enemy.health - angrip[valg]
             gnomhelse()
+
     else:
         print("velg alternativ 1, 2 eller 3")
         attack()
@@ -211,7 +214,6 @@ def attack():
                 valg = 0
                 enemy.health = enemy.health - angrip[valg]
                 gnomhelse()
-
         else:
             print("velg alternativ 1, 2 eller 3")
 
