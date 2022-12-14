@@ -7,8 +7,6 @@ class Spiller:
         self.nåverendreRom = nåverendeRom
 
         """Her finner man hjelp til hvordan man spiller"""
-    def interact(self, poi):
-        self.poi = poi
     def go(self):
         for noekkel, verdi in self.nåverendreRom.naborom.items():
             if verdi == None:
@@ -41,8 +39,8 @@ class Sener:
         
         
     def visRom(self):
-        for noekkel in self.poi.items():
-            print(f"Du ser en{noekkel}")
+        for noekkel in self.poi:
+            print(f"Du ser en {noekkel}")
     def addnaboRom(self, naborom ):
         self.naborom=naborom
 
@@ -222,19 +220,21 @@ navn = "test"
 spill = Spiller(navn,soverom)
 print("Du våkner og ser deg rundt i romme ditt. Du kler på deg og står opp fra senga. Skriv help(Sener) eller (Spiller) for å få hjelp om hva du kan gjøre videre.")
 gameend = False
+spill.nåverendreRom.visRom()
 while not gameend:
-    spill.nåverendreRom.visRom()
-    spillerinput = input("Hva vil du?\n 1. Interact\n 2. Gå til et annet rom\nSkriv inn hær:")
+    spillerinput = input("Hva vil du?\n 1. Interact\n 2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
     if spillerinput == "1":
         print("Hva vil se se nermere på?")
         for i in spill.nåverendreRom.poi:
             print(i)
         spillerinput = input("")
         if spillerinput in spill.nåverendreRom.poi:
-            print("test")
+            print(spill.nåverendreRom.poi[i])
     if spillerinput == "2":
         print("Hvilken rettning vil du gå?")
         spill.go()
+    if spillerinput == "3":
+        spill.nåverendreRom.visRom()
 
 
 
