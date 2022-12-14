@@ -19,7 +19,12 @@ class Spiller:
         if retning == "n" or retning =="e" or retning =="w"or retning =="s":
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
             print(f"Du har annkommet{spill.nåverendreRom.navn}")
-        #TODO
+
+ 
+        #todo
+        """Bruke arv til å iverksette gnom battle
+        class under sene class
+        """
 
 
 
@@ -175,6 +180,7 @@ def gnomhelse():
 if enemy.health <= 0: #Spesifisere fienden (gnom)
     print("Gnomeo pines og venter en smertefull og ikke heroisk død.\n LOL.\n Han er ley seg og vil hjem til hans mor og beelskede Juliet - Gnomeo og Juliet")
 """
+
 def attack():
     while enemy.health > 0:
     
@@ -237,7 +243,5 @@ while not gameend:
     if spillerinput == "2":
         print("Hvilken rettning vil du gå?")
         spill.go()
-
-
 
 print("Spillet er over, dette var en Beta versjon")
