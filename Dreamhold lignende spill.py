@@ -245,3 +245,9 @@ while not gameend:
         spill.go()
 
 print("Spillet er over, dette var en Beta versjon")
+
+if gnom.health <= 0:
+    gameend = True
+
+if gameend == True:
+    print("GG's")
