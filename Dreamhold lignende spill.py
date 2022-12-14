@@ -1,11 +1,10 @@
 import random as rd
-startrom = "Soverom"
 class Spiller:
     """Info om klassen spiller."""
-    def __init__(self,navn,nåverendeRom,):
+    def __init__(self,navn,nåverendeRom,loot = 0):
         self.navn = navn
         self.nåverendreRom = nåverendeRom
-
+        self.loot = loot
     def go(self):
         for noekkel, verdi in self.nåverendreRom.naborom.items():
             if verdi == None:
@@ -23,20 +22,33 @@ class Spiller:
             print(i)
         spillerinput = input("")
         for i in spill.nåverendreRom.poi:
-            if spillerinput == "terning":
-                print(spill.nåverendreRom.poi["terning"])
-                spill.terning()
-            
-            if spillerinput == i:
+            if spillerinput.lower() == i:
                 print(spill.nåverendreRom.poi[i])
-            break
+                break
+        
+        if spillerinput.lower() == "terning":
+                spill.terning() 
+
+        if spillerinput.lower() == "glass med melk" and spill.nåverendreRom == kjøkken:
+            print("Vil du drikke melken eller ikke?")
+            spørsemål = input("Ja eller nei? \nsvar: ")
+            if spørsemål.lower() == "ja":
+                spill.melk()
+        elif spillerinput.lower() in spill.nåverendreRom.poi:
+            return
+        if spillerinput.lower() =="glass med melk":
+            return
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
     
     def terning(self):
         side = rd.randint(1,6)
-        print(f"den landet på side {side}")
+        print(f"den landet på {side}")
+    def melk(self):
+        print("Hvorfor gjore jeg det. Faen jeg må spy")
+        print("Du springer innpå badet og spyr i doen. Deretter trekker du opp.")
+        self.nåverendreRom = bad
 
 
 class Sener:
@@ -66,7 +78,7 @@ soverompoi = {
     "dør":"Det er en hvit dør sør i rommet for deg. Den ser åpen ut.",
     "vindu":"Du ser ut vinduet, det snør. Snøen daler elegant ned og lander forskigtig på plenen, desto lengere du ser, jo mer av plenen blir dekket i snø.",
     "drikkeflaske":"Det står en halvfull drikkeflaske med vann på nattborde ditt. Du våkner alltid midt på natten og føler deg tørr i munnen, så dette er din løsning på dette.",
-    "klær":"Det ligger en haug med klær på en stol du har i hjørnet av rommet. Har alle det tenker du til deg selv. (Alle har det ikke tenk på det).",
+    "klær":"Det ligger en haug med klær på en stol du har i hjørnet av rommet. Har alle det tenker du til deg selv. (Alle har det. Ikke tenk på det).",
     
 }
 stuepoi = {
@@ -86,11 +98,13 @@ kjøkkenpoi ={
 badpoi = {
     "tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
     "tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til.",
+    "dopapir":"Det ser ut som jeg må kjøpe mer dopapir. Begynner å gå tom.",
     "Dør til øst":"Denne døren tar deg inn tilbake til stuen"
 }
 kottpoi = {
     "gnom":"Det står en gnom mitt på rommet. Hvorfor står det en gnom midt på rommet. Den ser ikke snill ut.",
-    "dør til nord":"Denne døre går inn tilbake til stuen."
+    "dør til nord":"Denne døre går inn tilbake til stuen.",
+    "kniv":"Det ligger en komisk stor kniv bak gnomen. Hvordan kom den seg dit? Må ha vært King Bach."
 }
 
 soverom = Sener("soveromet",soverompoi)
@@ -246,7 +260,7 @@ print("Du våkner og ser deg rundt i romme ditt. Du kler på deg å står opp fr
 gameend = False
 spill.nåverendreRom.visRom()
 while not gameend:
-    spillerinput = input("Hva vil du?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: \n")
+    spillerinput = input("Hva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
     if spillerinput == "1":
         print("Hva vil se se nermere på?")
         spill.interact()
