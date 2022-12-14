@@ -35,42 +35,12 @@ class Sener:
         self.poi = poi
         for i in poi:
             print(f"Du ser rundt i rommet. Det du legger merke til er {i}")
-                
-stuerom = {
-    "n":"soverom",
-    "e":"kjøkken",
-    "s":"kott",
-    "w":"bad"
-}
-soverom = {
-    "n":"ingenting",
-    "e":"ingenting",
-    "s":"stue",
-    "w":"ingenting"
-}
-kjøkkenrom = {
-    "n":"ingenting",
-    "e":"ingenting",
-    "s":"ingenting",
-    "w":"stue"
-}
-kottrom = {
-    "n":"stue",
-    "e":"ingenting",
-    "s":"ingenting",
-    "w":"ingenting"   
-}
-badrom = {
-    "n":"ingenting",
-    "e":"stue",
-    "s":"ingenting",
-    "w":"ingenting"
-}
+    def addnaboRom(self, naborom ):
+        self.naborom=naborom
 
 #start.adpoi("TV","Besrivelse av hva som er på tv-en")
 soverompoi = {
     "Dør":"Det er en hvit dør sør i rommet for deg. Den ser åpen ut",
-    "Vindu":"Det er vinter, man kan se snøen dale ned og legge seg over gresset."
     
 }
 stuepoi = {
@@ -86,16 +56,47 @@ badpoi = {
     "Tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
     "Tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til."
 }
+kottpoi = {
+    "Gnom":"Det står en gnom mitt på rommet. Hvorfor står det en gnom midt på rommet. Den ser ikke snill ut."
+}
 
-soverom = Sener(soverompoi,soverom)
-stue = Sener(stuepoi, stuerom)
-kjøkken = Sener(kjøkkenpoi,kjøkkenrom)
-kott = Sener({},kottrom )
-bad = Sener(badpoi,badrom)
+soverom = Sener(soverompoi)
+stue = Sener(stuepoi)
+kjøkken = Sener(kjøkkenpoi)
+kott = Sener(kottpoi)
+bad = Sener(badpoi)
 
 
-
-
+stuerom = {
+    "n":soverom,
+    "e":kjøkken,
+    "s":kott,
+    "w":bad
+}
+soverom = {
+    "n":ingenting,
+    "e":ingenting,
+    "s":stue,
+    "w":ingenting
+}
+kjøkkenrom = {
+    "n":ingenting,
+    "e":ingenting,
+    "s":ingenting,
+    "w":stue
+}
+kottrom = {
+    "n":stue,
+    "e":ingenting,
+    "s":ingenting,
+    "w":ingenting   
+}
+badrom = {
+    "n":ingenting,
+    "e":stue,
+    "s":ingenting,
+    "w":ingenting
+}
 #Fiender?
 class gnom(object):     #Ikke bruk class.... sier hans
     name = "Gnomeo"
