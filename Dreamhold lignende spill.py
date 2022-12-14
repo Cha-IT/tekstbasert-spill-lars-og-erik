@@ -27,9 +27,6 @@ class Sener:
     def go(self, rettning, naborom ={}):
         self.rettning = rettning
         self.naborom = naborom
-        for i in naborom:
-            if i.value() == "ingenting":
-                print("Du går rett inni veggen, prøv å gå gjennom en dør istedet")
         
     def visRom(self, poi={}):
         self.poi = poi
@@ -74,28 +71,28 @@ stuerom = {
     "w":bad
 }
 soverom = {
-    "n":ingenting,
-    "e":ingenting,
+    "n":None,
+    "e":None,
     "s":stue,
-    "w":ingenting
+    "w":None
 }
 kjøkkenrom = {
-    "n":ingenting,
-    "e":ingenting,
-    "s":ingenting,
+    "n":None,
+    "e":None,
+    "s":None,
     "w":stue
 }
 kottrom = {
     "n":stue,
-    "e":ingenting,
-    "s":ingenting,
-    "w":ingenting   
+    "e":None,
+    "s":None,
+    "w":None   
 }
 badrom = {
-    "n":ingenting,
+    "n":None,
     "e":stue,
-    "s":ingenting,
-    "w":ingenting
+    "s":None,
+    "w":None
 }
 #Fiender?
 class gnom(object):     #Ikke bruk class.... sier hans
