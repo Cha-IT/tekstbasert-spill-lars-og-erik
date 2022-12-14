@@ -38,6 +38,9 @@ class Spiller:
             return
         if spillerinput.lower() =="glass med melk":
             return
+        if spillerinput.lower() == "gnom":
+            
+            pass
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
@@ -165,49 +168,8 @@ gnom = enemy("Gnomeo", 40, 3, 2, "Nøkkel1")
 def gnomhelse():
     if enemy.health <= 0:
         print("Gnomeo er død")
+        print("Han slapp noe skinner og ligger på bakken bak han") #Her kan nøkkel ligg eller nokka sånt
 
-"""def attack():
-    print("Velg ditt angrep")
-    valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
-    angrip = {"1":10,
-        "2":20,       
-        "3":50,
-        "0":0}
-    if valg == "1":
-        angrep = "Normal attack"
-        print("Du slår fienden")
-        print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-        enemy.health = enemy.health - angrip[valg]
-        gnomhelse()
-
-    elif attack == "2":
-        angrep = "special attack"
-        print("Du sparker fienden")
-        print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-        enemy.health = enemy.health - angrip[valg]
-        gnomhelse()
-
-    elif attack == "3":
-        angrep = "super attack"
-        print("Du løper mot fienden for å angripe alt du kan")
-        sjanse = rd.randint(1,4)
-        if sjanse != 4:
-            print("Du slår og sparker fienden med en syk kombo")
-            print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
-            enemy.health = enemy.health - angrip[valg]
-            gnomhelse()
-        else:
-            print("du dreit deg ut")
-            valg = 0
-            enemy.health = enemy.health - angrip[valg]
-            gnomhelse()
-
-    else:
-        print("velg alternativ 1, 2 eller 3")
-        attack()
-if enemy.health <= 0: #Spesifisere fienden (gnom)
-    print("Gnomeo pines og venter en smertefull og ikke heroisk død.\n LOL.\n Han er ley seg og vil hjem til hans mor og beelskede Juliet - Gnomeo og Juliet")
-"""
 def attack():
     while enemy.health > 0:
     
@@ -273,5 +235,3 @@ while not gameend:
         soverom.hjelp()
 
 
-
-print("Spillet er over, dette var en Beta versjon")
