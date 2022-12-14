@@ -1,30 +1,36 @@
 import random as rd
 startrom = "Soverom"
-print("Du våkner og ser deg rundt i romme ditt. Du kler på deg og står opp fra senga. Skriv help(Sener) eller (Spiller) for å få hjelp om hva du kan gjøre videre.")
 class Spiller:
     """Skriv interact også tingen du vil interacte med og den vil gi den en beskrivelse av objecte"""
-    def __init__(self,nåverendeRom,poi = {}):
-        self.poi = poi
+    def __init__(self,navn,nåverendeRom,):
+        self.navn = navn
         self.nåverendreRom = nåverendeRom
 
         """Her finner man hjelp til hvordan man spiller"""
     def interact(self, poi):
         self.poi = poi
     def go(self):
-        for i in naborom[nåverendeRom]:
-            if i.value()==type(str):
-                print("hallo")
-            
-        self.nåverendrerom =  self.nåverendreRom.naborom[retning]
+        for noekkel, verdi in self.nåverendreRom.naborom.items():
+            if verdi == None:
+                pass
+            else:
+                print(f"Nøkkel: {noekkel}, verdi: {verdi.navn}.")
+        retning=input("")
+        if retning == "n" or retning =="e" or retning =="w"or retning =="s":
+            self.nåverendreRom =  self.nåverendreRom.naborom[retning]
+            print(f"Du har annkommet{spill.nåverendreRom.navn}")
+        #TODO
+
 
 
 
 class Sener:
     """Skriv visInfo så vil det skrives ut alle tingene du kan gjøre noe med på rommet.
     Skriv Go også en rettning n,w,s,e for å bevege deg til en dør."""
-    def __init__(self,poi={},naborom = {}):
+    def __init__(self,navnpårom,poi={},naborom = {}):
         self.poi = poi
         self.naborom = naborom 
+        self.navn = navnpårom
     def adpoi(self, poi, beskrivelse):
         
         self.poi[poi] = beskrivelse
@@ -34,10 +40,9 @@ class Sener:
             self.adpoi(keys,beskrivelse) 
         
         
-    def visRom(self, poi={}):
-        self.poi = poi
-        for i in poi:
-            print(f"Du ser rundt i rommet. Det du legger merke til er {i}")
+    def visRom(self):
+        for noekkel in self.poi.items():
+            print(f"Du ser en{noekkel}")
     def addnaboRom(self, naborom ):
         self.naborom=naborom
 
@@ -52,7 +57,7 @@ stuepoi = {
     "Terning":"Beskrivelse av terning på stuebordet.",
     "Dør mot nord":"Denne døren går inn til soverommet.",
     "Dør mot øst":"Denne døren går inn til kjøkkenet.",
-    "Dør mot sør":"Denne døren går inn til det mørke kottet."
+    "Dør mot sør":"Denne døren går inn til det mørke kottet.",
     "Dør mot vest":"Denne døren går inn til badet."
 }
 kjøkkenpoi ={
@@ -70,11 +75,11 @@ kottpoi = {
     "Dør til nord":"Denne døre går inn tilbake til stuen."
 }
 
-soverom = Sener(soverompoi)
-stue = Sener(stuepoi)
-kjøkken = Sener(kjøkkenpoi)
-kott = Sener(kottpoi)
-bad = Sener(badpoi)
+soverom = Sener("soverom",soverompoi)
+stue = Sener("stue",stuepoi)
+kjøkken = Sener("kjøkken",kjøkkenpoi)
+kott = Sener("kott",kottpoi)
+bad = Sener("bad",badpoi)
 
 
 stuerom = {
@@ -108,40 +113,45 @@ badrom = {
     "w":None
 }
 bad.addnaboRom(badrom)
-stue.addnaboRom(stue)
-soveromrom.adnaboRom(soverom)
-kjøkken.addnaboRom(kjøkken)
-kott.addnaboRom(kott)
+stue.addnaboRom(stuerom)
+soverom.addnaboRom(soveromrom)
+kjøkken.addnaboRom(kjøkkenrom)
+kott.addnaboRom(kottrom)
 
 #Fiender?
-class gnom(object):     #Ikke bruk class.... sier hans
-    name = "Gnomeo"
-    health = 20
-    strength = 3
-    defence = 2
-    loot = "Nøkkel#123" #?????
+class enemy:
+    def __init__(self, name, health, strength, defence, loot):
+        self.name = name
+        self.health = health
+        self.strength = strength
+        self.defence = defence
+        self.loot = loot
+gnom = enemy("Gnomeo", 40, 3, 2, "Nøkkel1")
 
+#pve rollespill
+def gnomhelse():
+    if enemy.health <= 0:
+        print("Gnomeo er død")
 
-#pve rollespill uwu
-def attack():
+"""def attack():
     print("Velg ditt angrep")
     valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
-
     angrip = {"1":10,
-        "2":20,         #ordbok?
+        "2":20,       
         "3":50,
         "0":0}
-
     if valg == "1":
         angrep = "Normal attack"
         print("Du slår fienden")
         print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-    
+        enemy.health = enemy.health - angrip[valg]
+        gnomhelse()
     elif attack == "2":
         angrep = "special attack"
         print("Du sparker fienden")
         print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-    
+        enemy.health = enemy.health - angrip[valg]
+        gnomhelse()
     elif attack == "3":
         angrep = "super attack"
         print("Du løper mot fienden for å angripe alt du kan")
@@ -149,13 +159,83 @@ def attack():
         if sjanse != 4:
             print("Du slår og sparker fienden med en syk kombo")
             print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
+            enemy.health = enemy.health - angrip[valg]
+            gnomhelse()
         else:
             print("du dreit deg ut")
             valg = 0
-
+            enemy.health = enemy.health - angrip[valg]
+            gnomhelse()
     else:
-        print("velg bare 1, 2 eller 3")
+        print("velg alternativ 1, 2 eller 3")
         attack()
-
+if enemy.health <= 0: #Spesifisere fienden (gnom)
+    print("Gnomeo pines og venter en smertefull og ikke heroisk død.\n LOL.\n Han er ley seg og vil hjem til hans mor og beelskede Juliet - Gnomeo og Juliet")
+"""
+def attack():
+    while enemy.health > 0:
     
+        print("Velg ditt angrep")
+        valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
 
+        angrip = {"1":10,
+            "2":20,       
+            "3":50,
+            "0":0}
+
+        if valg == "1":
+            angrep = "Normal attack"
+            print("Du slår fienden")
+            print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
+            enemy.health = enemy.health - angrip[valg]
+            gnomhelse()
+
+        elif valg == "2":
+            angrep = "special attack"
+            print("Du sparker fienden")
+            print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
+            enemy.health = enemy.health - angrip[valg]
+            gnomhelse()
+
+        elif valg == "3":
+            angrep = "super attack"
+            print("Du løper mot fienden for å angripe alt du kan")
+            sjanse = rd.randint(1,4)
+            if sjanse != 4:
+                print("Du slår og sparker fienden med en syk kombo")
+                print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
+                enemy.health = enemy.health - angrip[valg]
+                gnomhelse()
+            else:
+                print("du dreit deg ut")
+                valg = 0
+                enemy.health = enemy.health - angrip[valg]
+                gnomhelse()
+
+        else:
+            print("velg alternativ 1, 2 eller 3")
+
+
+# her skjer spillet:
+#navn=input("Hva heter du?\nSkriv inn her: ")
+navn = "test"
+spill = Spiller(navn,soverom)
+print("Du våkner og ser deg rundt i romme ditt. Du kler på deg og står opp fra senga. Skriv help(Sener) eller (Spiller) for å få hjelp om hva du kan gjøre videre.")
+gameend = False
+while not gameend:
+    spill.nåverendreRom.visRom()
+    spillerinput = input("Hva vil du?\n 1. Interact\n 2. Gå til et annet rom\nSkriv inn hær:")
+    if spillerinput == "1":
+        print("Hva vil se se nermere på?")
+        for i in spill.nåverendreRom.poi:
+            print(i)
+        spillerinput = input("")
+        if spillerinput in spill.nåverendreRom.poi:
+            print("test")
+    if spillerinput == "2":
+        print("Hvilken rettning vil du gå?")
+        spill.go()
+
+
+
+print("Spillet er over, dette var en Beta versjon")
