@@ -86,11 +86,13 @@ kjøkkenpoi ={
 badpoi = {
     "tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
     "tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til.",
+    "dopapir":"Det ser ut som jeg må kjøpe mer dopapir. Begynner å gå tom.",
     "Dør til øst":"Denne døren tar deg inn tilbake til stuen"
 }
 kottpoi = {
     "gnom":"Det står en gnom mitt på rommet. Hvorfor står det en gnom midt på rommet. Den ser ikke snill ut.",
-    "dør til nord":"Denne døre går inn tilbake til stuen."
+    "dør til nord":"Denne døre går inn tilbake til stuen.",
+    "kniv":"Det ligger en komisk stor kniv bak gnomen. Hvordan kom den seg dit? Må ha vært King Bach."
 }
 
 soverom = Sener("soveromet",soverompoi)
