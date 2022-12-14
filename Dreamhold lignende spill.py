@@ -1,6 +1,7 @@
 import random as rd
 startrom = "Soverom"
 playerinput = input("Hva gjør du?\n skriv hær: ")
+
 class Spiller:
     def __init__(self,poi = {}):
         self.poi = poi
@@ -37,41 +38,9 @@ class Sener:
     def addnaboRom(self, naborom ):
         self.naborom=naborom
 
-stuerom = {
-    "n":soverom,
-    "e":kjøkken,
-    "s":"kott",
-    "w":"bad"
-}
-soverom = {
-    "n":"ingenting",
-    "e":"ingenting",
-    "s":"stue",
-    "w":"ingenting"
-}
-kjøkkenrom = {
-    "n":"ingenting",
-    "e":"ingenting",
-    "s":"ingenting",
-    "w":"stue"
-}
-kottrom = {
-    "n":"stue",
-    "e":"ingenting",
-    "s":"ingenting",
-    "w":"ingenting"   
-}
-badrom = {
-    "n":"ingenting",
-    "e":"stue",
-    "s":"ingenting",
-    "w":"ingenting"
-}
-
 #start.adpoi("TV","Besrivelse av hva som er på tv-en")
 soverompoi = {
     "Dør":"Det er en hvit dør sør i rommet for deg. Den ser åpen ut",
-    "Vindu":"Det er vinter, man kan se snøen dale ned og legge seg over gresset."
     
 }
 stuepoi = {
@@ -95,41 +64,39 @@ soverom = Sener(soverompoi)
 stue = Sener(stuepoi)
 kjøkken = Sener(kjøkkenpoi)
 kott = Sener(kottpoi)
-bad = Sener(badpoi,badrom)
+bad = Sener(badpoi)
 
 
 stuerom = {
     "n":soverom,
     "e":kjøkken,
-    "s":"kott",
-    "w":"bad"
+    "s":kott,
+    "w":bad
 }
 soverom = {
-    "n":"ingenting",
-    "e":"ingenting",
-    "s":"stue",
-    "w":"ingenting"
+    "n":ingenting,
+    "e":ingenting,
+    "s":stue,
+    "w":ingenting
 }
 kjøkkenrom = {
-    "n":"ingenting",
-    "e":"ingenting",
-    "s":"ingenting",
-    "w":"stue"
+    "n":ingenting,
+    "e":ingenting,
+    "s":ingenting,
+    "w":stue
 }
 kottrom = {
-    "n":"stue",
-    "e":"ingenting",
-    "s":"ingenting",
-    "w":"ingenting"   
+    "n":stue,
+    "e":ingenting,
+    "s":ingenting,
+    "w":ingenting   
 }
 badrom = {
-    "n":"ingenting",
-    "e":"stue",
-    "s":"ingenting",
-    "w":"ingenting"
+    "n":ingenting,
+    "e":stue,
+    "s":ingenting,
+    "w":ingenting
 }
-
-
 #Fiender?
 class gnom(object):     #Ikke bruk class.... sier hans
     name = "Gnomeo"
