@@ -1,4 +1,9 @@
+#Importerer random som rd. Bruker rd til å kaste terning og når man skal slås mot gnomen
 import random as rd
+# Importerer datetime sånn at jeg kan ta tiden
+from datetime import datetime
+# Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
+start_time = datetime.now()
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom,loot = 0):
@@ -234,4 +239,7 @@ while not gameend:
     if spillerinput == "hjelp":
         soverom.hjelp()
 
-
+#Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
+end_time = datetime.now()
+#Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
+print('Duration: {}'.format(end_time - start_time))
