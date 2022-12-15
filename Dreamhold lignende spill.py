@@ -12,7 +12,7 @@ class Spiller:
             if verdi == None:
                 pass
             else:
-                print(f"Nøkkel: {noekkel}, verdi: {verdi.navn}.")
+                print(f"Mulige rettninger å gå {noekkel} som følger deg til {verdi.navn}.")
         retning=input("")
         if retning == "n" or retning =="e" or retning =="w"or retning =="s":
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
@@ -224,7 +224,7 @@ print("Du våkner og ser deg rundt i romme ditt. Du kler på deg og står opp fr
 gameend = False
 spill.nåverendreRom.visRom()
 while not gameend:
-    spillerinput = input("Hva vil du?\n 1. Interact\n 2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
+    spillerinput = input("Hva vil du?\n 1. Interact\n 2. Gå til et annet rom\n 3. Se rom\nSkriv inn hær: ")
     if spillerinput == "1":
         print("Hva vil se se nermere på?")
         for i in spill.nåverendreRom.poi:
