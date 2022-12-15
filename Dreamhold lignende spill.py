@@ -1,15 +1,18 @@
+#Det er viktig at du killer terminalen når du vil restarte game.
 #Importerer random som rd. Bruker rd til å kaste terning og når man skal slås mot gnomen
 import random as rd
 # Importerer datetime sånn at jeg kan ta tiden
 from datetime import datetime
 # Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
 modus = input("Hvilke modus vil du spille i?\n1. vanlig \n2. speedrun modus\nSkriv inn hær: ")
+def clear():
+    for i in range(10):
+        print(" ")
+
 if modus == "2":
     start_time = datetime.now()
-if modus =="1":
-    pass
-else:
-    print("Du må skrive inn modus 1 eller 2")
+if modus == "1":
+    print("Hærlig")
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom):
@@ -30,6 +33,7 @@ class Spiller:
 
 
     def interact(self):
+        clear()
         for i in spill.nåverendreRom.poi:
             print(i)
         spillerinput = input("")
@@ -235,16 +239,21 @@ spill.nåverendreRom.visRom()
 while not gameend:
     spillerinput = input("Hva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
     if spillerinput == "1":
+        clear()
         print("Hva vil se se nermere på?")
         spill.interact()
     if spillerinput == "2":
+        clear()
         print("\nHvilken rettning vil du gå?")
         spill.go()
     if spillerinput == "3":
+        clear()
         spill.nåverendreRom.visRom()
     if spillerinput == "hjelp":
+        clear()
         soverom.hjelp()
     if gnom.health <= 0:
+        clear()
         gameend = True
 print("Du finner en pokal i gnomes enorme sekk")
 print("GG! Du vant og fortsatte dagen din som om det var en helt vanelig dag.")
@@ -256,3 +265,4 @@ if modus == "2":
     print("Tid brukt: {}".format(end_time - start_time))
 if modus == "1":
     print("prøv speedrun modus neste gang :)")
+
