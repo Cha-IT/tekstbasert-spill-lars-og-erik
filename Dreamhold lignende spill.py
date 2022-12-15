@@ -61,7 +61,7 @@ class Spiller:
                 spill.melk()
 
         if spillerinput.lower() == "gnom" and spill.nåverendreRom == kott:
-            print("gnomen er pedofil og vil sloss med deg")
+            print("gnomen kaller moren din for noen frekke ting og forbreder seg til å slåss mot deg")
             #Om du ser nermere på gnomen vil dere komme i en duell, litt som pokemon. Med hjelp av funksjonen attack
             attack()
             return
@@ -207,7 +207,7 @@ def gnomhelse():
 
 def attack():
     #Denne funksjonen kjøres når man ser nermere på gnomen, dette er hele fighting simmen i spillet. Her bruker jeg objektet spiller sitt navn til å prite navnet, men jeg kunne også bare bruke navn men dette er kulere og viser kompetanse i klasser og hvordan man bruker det i python
-    print(f"Gnomeo: Hei {spill.navn} jeg har ventet på deg. Slåss mot meg til døden")
+    print(f"Gnomeo: Hei {spill.navn} jeg har ventet på deg. Slåss mot meg til døden.")
     while gnom.health > 0:
         print("Velg ditt angrep")
         valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
@@ -228,7 +228,7 @@ def attack():
 
         elif valg == "2":
             angrep = "special attack"
-            print("Du tar kniven i kottet og kastrer en testikkel")
+            print("Du tar kniven og slår stikker han i øret")
             print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health+ gnom.regen - angrip[valg]} liv")
             gnom.health = gnom.health + gnom.regen - angrip[valg]
             gnomhelse()
@@ -243,7 +243,7 @@ def attack():
                 gnom.health = gnom.health + gnom.regen - angrip[valg]
                 gnomhelse()
             else:
-                print("Gnomen beveget seg i siste sekund og du bommet. Han flirer og tar en backflip")
+                print(f"Gnomen beveget seg i siste sekund og du bommet. Han flirer og tar en backflip. Ikke denne gangen {spill.navn} ")
                 valg = "0"
                 gnom.health = gnom.health + gnom.regen - angrip[valg]
                 gnomhelse()
