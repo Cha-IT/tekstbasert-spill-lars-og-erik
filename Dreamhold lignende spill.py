@@ -13,6 +13,7 @@ if modus == "2":
     start_time = datetime.now()
 if modus == "1":
     print("Hærlig")
+
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom):
@@ -33,10 +34,10 @@ class Spiller:
 
 
     def interact(self):
-        clear()
         for i in spill.nåverendreRom.poi:
             print(i)
         spillerinput = input("")
+        clear()
         for i in spill.nåverendreRom.poi:
             if spillerinput.lower() == i:
                 print(spill.nåverendreRom.poi[i])
@@ -113,7 +114,7 @@ stuepoi = {
 }
 kjøkkenpoi ={
     "glass med melk":"Det står et halvfult glass med melk på kjøkkenbenken. Uvist om hvor lenge den har stått der",
-    "brød":"Brød",
+    "brød":"Det ligger brød på kjøkken benken. Det ser ut som om noen har tatt en bit rett ut ifra brødskiva istede for å skjere den opp. Merkene på brødskiven ser veldig likt ut til gnome tenner tenker du for deg selv. Ikke spørr hvfor du veit det.",
     "dør mot vest":"Denne døren tar deg inn tilbake til stuen."
 }
 badpoi = {
