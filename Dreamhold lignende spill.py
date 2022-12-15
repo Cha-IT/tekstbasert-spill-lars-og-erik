@@ -12,10 +12,9 @@ else:
     print("Du må skrive inn modus 1 eller 2")
 class Spiller:
     """Info om klassen spiller."""
-    def __init__(self,navn,nåverendeRom,loot = 0):
+    def __init__(self,navn,nåverendeRom):
         self.navn = navn
         self.nåverendreRom = nåverendeRom
-        self.loot = loot
     def go(self):
         for noekkel, verdi in self.nåverendreRom.naborom.items():
             if verdi == None:
@@ -174,13 +173,12 @@ kott.addnaboRom(kottrom)
 
 #Fiender?
 class enemy:
-    def __init__(self, name, health, strength, defence):
+    def __init__(self, name, health, regen):
         self.name = name
         self.health = health
-        self.strength = strength
-        self.defence = defence
+        self.regen = regen
 
-gnom = enemy("Gnomeo", 80, 3, 2,)
+gnom = enemy("Gnomeo", 80, 7)
 
 #pve rollespill
 def gnomhelse():
@@ -203,30 +201,30 @@ def attack():
         if valg == "1":
             angrep = "Normal attack"
             print("Du tar kniven i kottet og stikker gnomen i foten")
-            print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-            gnom.health = gnom.health - angrip[valg]
+            print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health + gnom.regen - angrip[valg]} liv")
+            gnom.health = gnom.health + gnom.regen - angrip[valg]
             gnomhelse()
 
         elif valg == "2":
             angrep = "special attack"
             print("Du tar kniven i kottet og kastrer en testikkel")
-            print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-            gnom.health = gnom.health - angrip[valg]
+            print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health+ gnom.regen - angrip[valg]} liv")
+            gnom.health = gnom.health + gnom.regen - angrip[valg]
             gnomhelse()
 
         elif valg == "3":
             angrep = "super attack"
-            print("Du tar kniven i kottet og stikker gnomen i øyet")
+            print("Du tar kniven og forbreder deg til å angripe")
             sjanse = rd.randint(1,4)
             if sjanse != 4:
-                print("Du slår og sparker fienden med en syk kombo")
-                print(f"fienden mister 50 liv og har igjen {gnom.health - angrip[valg]} liv")
-                gnom.health = gnom.health - angrip[valg]
+                print("Du stikker den komeiske store kniven gjennom gnomen. Han hyler i smerte.")
+                print(f"fienden mister 50 liv og har igjen {gnom.health + gnom.regen - angrip[valg]} liv")
+                gnom.health = gnom.health + gnom.regen - angrip[valg]
                 gnomhelse()
             else:
-                print("du dreit deg ut")
+                print("Gnomen beveget seg i siste sekund og du bommet. Han flirer og tar en backflip")
                 valg = "0"
-                gnom.health = gnom.health - angrip[valg]
+                gnom.health = gnom.health + gnom.regen - angrip[valg]
                 gnomhelse()
         else:
             print("velg alternativ 1, 2 eller 3")
@@ -259,6 +257,6 @@ if modus == "2":
     #Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
     end_time = datetime.now()
     #Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
-    print('Duration: {}'.format(end_time - start_time))
+    print("Tid brukt: {}".format(end_time - start_time))
 if modus == "1":
     print("prøv speedrun modus neste gang :)")
