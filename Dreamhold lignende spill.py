@@ -107,7 +107,7 @@ badpoi = {
     "tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
     "tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til.",
     "dopapir":"Det ser ut som jeg må kjøpe mer dopapir. Begynner å gå tom.",
-    "Dør til øst":"Denne døren tar deg inn tilbake til stuen"
+    "dør til øst":"Denne døren tar deg inn tilbake til stuen"
 }
 kottpoi = {
     "gnom":"Det står en gnom mitt på rommet. Hvorfor står det en gnom midt på rommet. Den ser ikke snill ut.",
@@ -160,14 +160,13 @@ kott.addnaboRom(kottrom)
 
 #Fiender?
 class enemy:
-    def __init__(self, name, health, strength, defence, loot):
+    def __init__(self, name, health, strength, defence):
         self.name = name
         self.health = health
         self.strength = strength
         self.defence = defence
-        self.loot = loot
 
-gnom = enemy("Gnomeo", 40, 3, 2, "Nøkkel1")
+gnom = enemy("Gnomeo", 40, 3, 2,)
 
 #pve rollespill
 def gnomhelse():
