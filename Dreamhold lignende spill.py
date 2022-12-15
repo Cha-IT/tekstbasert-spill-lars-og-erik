@@ -3,23 +3,28 @@
 import random as rd
 # Importerer datetime sånn at jeg kan ta tiden
 from datetime import datetime
-# Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
+#Jeg tar en input fra spilleren for å se hvilken modus han vil spille
 modus = input("Hvilke modus vil du spille i?\n1. vanlig \n2. speedrun modus\nSkriv inn hær: ")
+#Dette er en funsjon som jeg laget for å skape mellom rom mellom tekstene så det blir enklere og lese all teksten som kommer opp på engang.
 def clear():
     for i in range(10):
         print(" ")
 
 if modus == "2":
+    # Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
     start_time = datetime.now()
 if modus == "1":
+    #siden det ikke skjer noe om han velger 1 eller noe annet så vil koden alltid være på vanlig modus med mindre de skriver 2
     print("Hærlig")
 
+#Dette er classen spiller. Den har egenskapene til navnet på spilleren og det nåverende rommet til spilleren.
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom):
         self.navn = navn
         self.nåverendreRom = nåverendeRom
     def go(self):
+        #Her er funksjonen som lar deg gå fra rom til rom. Den ser på naborommene som er i romme du er i nå og ser hvilke det er mulige å gå til. Om det er noen som det er mulige å gå til vil den si hvilken himmel rettning og hvor den døren tar deg
         for noekkel, verdi in self.nåverendreRom.naborom.items():
             if verdi == None:
                 pass
@@ -32,39 +37,45 @@ class Spiller:
             print(f"Du har annkommet {spill.nåverendreRom.navn}")
 
 
-
+        #Funksjonen som lar deg se beskrivelsen på ting
     def interact(self):
+        #her får du opp alle tingene du kan se  nermere på i en liste med hjelp av en for løkke
         for i in spill.nåverendreRom.poi:
             print(i)
         spillerinput = input("")
         clear()
+        #om det du skrev inn finns i ordboken så vil den skrive ut beskrivelsen til den nøkkelen
         for i in spill.nåverendreRom.poi:
             if spillerinput.lower() == i:
                 print(spill.nåverendreRom.poi[i])
                 break
-        
+        #Jeg lagg til disse for spiessiele ting som skjer når man ser nermere på spesefike ting slik som terningen, melke glasset og gnomen
         if spillerinput.lower() == "terning":
                 spill.terning() 
-
+        
         if spillerinput.lower() == "glass med melk" and spill.nåverendreRom == kjøkken:
             print("Vil du drikke melken eller ikke?")
             spørsemål = input("Ja eller nei? \nsvar: ")
             if spørsemål.lower() == "ja":
+                #Om du tar ja vil spilleren springe inn til badet for å spy. Som endrer det nåverende rommet til spilleren og posisjonen deres.
                 spill.melk()
 
         if spillerinput.lower() == "gnom" and spill.nåverendreRom == kott:
             print("gnomen er pedofil og vil sloss med deg")
+            #Om du ser nermere på gnomen vil dere komme i en duell, litt som pokemon. Med hjelp av funksjonen attack
             attack()
             return
 
         elif spillerinput.lower() in spill.nåverendreRom.poi:
             return
+        # her måtte jeg legge til en spesefik løsning for glass med melk. FOrdi nå spilleren springer fra kjøkkenet til badet vil fortsatt tingen de valgte være en ting som bare er i kjøkkenet og nå er de i badet.
+        #Så det ville stå at de måtte velgge noe fra badet. Så jeg lagg inn denne sånn at det ikke skulle bli sånn.
         if spillerinput.lower() =="glass med melk":
             return
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
-    
+    #funksjon som kaster terning
     def terning(self):
         side = rd.randint(1,6)
         print(f"den landet på {side}")
@@ -72,22 +83,26 @@ class Spiller:
         print("Hvorfor gjore jeg det. Faen jeg må spy")
         print("Du springer innpå badet og spyr i doen. Deretter trekker du opp.")
         self.nåverendreRom = bad
-
+#klassen sener
 class Sener:
     """Info om classen Sener."""
+    #Den holder på informasjonen på navnet på rommet, ting som er interesanne på rommet og naborommene
     def __init__(self,navnpårom,poi={},naborom = {}):
         self.poi = poi
         self.naborom = naborom 
         self.navn = navnpårom
         
     def visRom(self):
+        #viser rommet og sier alle de interessane objektene
         for objekt in self.poi:
             print(f"Du ser {objekt}.")
 
     def addnaboRom(self, naborom ):
+        #Bruker denne for å legge til naborom til objektene
         self.naborom=naborom
     
     def hjelp(self):
+        #skal hjelpe spilleren med tingene man kan gjøre
         print("I dette spillet kan du utforke et hus fra rom til rom.")
         print("Velg endten interact, hvor vil du gå? eller se rom.")
         print("Interact tar opp en liste med ting du kan se nermere på.")
@@ -95,7 +110,7 @@ class Sener:
         print("Når man ankommer ett nytt rom vil det komme opp tekst med alle de intresange objektene i rommet, om du er uheldig og ikke får det med deg kan du bruke se rom.")
         print("Dette vil gjenta det som sto når du først kom inn i rommet. Lykke til! :)")
     
-#start.adpoi("TV","Besrivelse av hva som er på tv-en")
+#Her er ordbøkene med alle points of interest til alle rommene som blir lagt til objektene når de lages
 soverompoi = {
     "dør":"Det er en hvit dør sør i rommet for deg. Den ser åpen ut.",
     "vindu":"Du ser ut vinduet, det snør. Snøen daler elegant ned og lander forskigtig på plenen, desto lengere du ser, jo mer av plenen blir dekket i snø.",
@@ -128,14 +143,14 @@ kottpoi = {
     "dør til nord":"Denne døre går inn tilbake til stuen.",
     "kniv":"Det ligger en komisk stor kniv bak gnomen. Hvordan kom den seg dit? Må ha vært King Bach."
 }
-
+#Her lager vi objektene
 soverom = Sener("soveromet",soverompoi)
 stue = Sener("stua",stuepoi)
 kjøkken = Sener("kjøkkenet",kjøkkenpoi)
 kott = Sener("kottet",kottpoi)
 bad = Sener("badet",badpoi)
 
-
+#Her skriver jeg hvor rommene er i forhold til hverandre så man vet hvor man kan gå når man er i et rom.
 stuerom = {
     "n":soverom,
     "e":kjøkken,
@@ -166,22 +181,24 @@ badrom = {
     "s":None,
     "w":None
 }
+#Naborommene legges til i objektene med hjelp av funksjonen vi lagde i sener
 bad.addnaboRom(badrom)
 stue.addnaboRom(stuerom)
 soverom.addnaboRom(soveromrom)
 kjøkken.addnaboRom(kjøkkenrom)
 kott.addnaboRom(kottrom)
 
-#Fiender?
+
+#klasse for fiender. Regen er health regen som betyr hvor mye fienden healer etter hvert trekk
 class enemy:
     def __init__(self, name, health, regen):
         self.name = name
         self.health = health
         self.regen = regen
-
+#lager objektet
 gnom = enemy("Gnomeo", 80, 7)
 
-#pve rollespill
+#Det som kommer opp når fienden dør. en funksjon
 def gnomhelse():
 
     if gnom.health <= 0:
@@ -189,9 +206,12 @@ def gnomhelse():
 
 
 def attack():
+    #Denne funksjonen kjøres når man ser nermere på gnomen, dette er hele fighting simmen i spillet. Her bruker jeg objektet spiller sitt navn til å prite navnet, men jeg kunne også bare bruke navn men dette er kulere og viser kompetanse i klasser og hvordan man bruker det i python
+    print(f"Gnomeo: Hei {spill.navn} jeg har ventet på deg. Slåss mot meg til døden")
     while gnom.health > 0:
         print("Velg ditt angrep")
         valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
+        #Man kan velge forskjellige angrep som gjør forskjellig skade 
 
         angrip = {"1":10,
             "2":20,       
@@ -232,12 +252,16 @@ def attack():
 
 
 # her skjer spillet:
+#Spør om navnet til spilleren
 navn=input("Hva heter du?\nSkriv inn her: ")
+#lager spiller objektet
 spill = Spiller(navn,soverom)
 print("Du våkner og ser deg rundt i romme ditt. Du kler på deg å står opp fra senga. Skriv hjelp for å få hjelp om hva du kan gjøre videre.")
+# gameend er det som får while løkken med input som spør spilleren om hva man skal gjøre til å ikke slutte.
 gameend = False
 spill.nåverendreRom.visRom()
 while not gameend:
+    #Her kommer det valgmeny om hva man kan gøre. Alle disse valgene har en egen funksjon i klassene som blir kjørt.
     spillerinput = input("Hva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
     if spillerinput == "1":
         clear()
@@ -254,9 +278,11 @@ while not gameend:
         clear()
         soverom.hjelp()
     if gnom.health <= 0:
+        #når dette skjer så har man slått spillet fordi gameend blir true og whike løkken slutter
         clear()
         gameend = True
 print("Du finner en pokal i gnomes enorme sekk")
+print("Litt rart at gnomen vill kjempe til døden. Han sto der jo bare og ble slått, han slo aldri tilbake. Nokk om det tenker du mens du ser din smilende refleksjon i pokalen.")
 print("GG! Du vant og fortsatte dagen din som om det var en helt vanelig dag.")
 print("Takk for at du spilte. Dette er en beta versjon så stay tuned. :3 OwO")
 if modus == "2":
@@ -266,4 +292,4 @@ if modus == "2":
     print("Tid brukt: {}".format(end_time - start_time))
 if modus == "1":
     print("prøv speedrun modus neste gang :)")
-
+#Håper dere liker spillet.
