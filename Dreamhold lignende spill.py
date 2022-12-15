@@ -1,4 +1,9 @@
+#Importerer random som rd. Bruker rd til å kaste terning og når man skal slås mot gnomen
 import random as rd
+# Importerer datetime sånn at jeg kan ta tiden
+from datetime import datetime
+# Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
+start_time = datetime.now()
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom,loot = 0):
@@ -10,7 +15,10 @@ class Spiller:
             if verdi == None:
                 pass
             else:
+                print(f"Mulige rettninger å gå {noekkel} som følger deg til {verdi.navn}.")
+
                 print(f"Retning: {noekkel}, Rom: {verdi.navn}.")
+
         retning=input("")
         if retning == "n" or retning =="e" or retning =="w"or retning =="s":
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
@@ -38,6 +46,9 @@ class Spiller:
             return
         if spillerinput.lower() =="glass med melk":
             return
+        if spillerinput.lower() == "gnom":
+            
+            pass
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
@@ -165,49 +176,8 @@ gnom = enemy("Gnomeo", 40, 3, 2, "Nøkkel1")
 def gnomhelse():
     if enemy.health <= 0:
         print("Gnomeo er død")
+        print("Han slapp noe skinner og ligger på bakken bak han") #Her kan nøkkel ligg eller nokka sånt
 
-"""def attack():
-    print("Velg ditt angrep")
-    valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
-    angrip = {"1":10,
-        "2":20,       
-        "3":50,
-        "0":0}
-    if valg == "1":
-        angrep = "Normal attack"
-        print("Du slår fienden")
-        print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-        enemy.health = enemy.health - angrip[valg]
-        gnomhelse()
-
-    elif attack == "2":
-        angrep = "special attack"
-        print("Du sparker fienden")
-        print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-        enemy.health = enemy.health - angrip[valg]
-        gnomhelse()
-
-    elif attack == "3":
-        angrep = "super attack"
-        print("Du løper mot fienden for å angripe alt du kan")
-        sjanse = rd.randint(1,4)
-        if sjanse != 4:
-            print("Du slår og sparker fienden med en syk kombo")
-            print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
-            enemy.health = enemy.health - angrip[valg]
-            gnomhelse()
-        else:
-            print("du dreit deg ut")
-            valg = 0
-            enemy.health = enemy.health - angrip[valg]
-            gnomhelse()
-
-    else:
-        print("velg alternativ 1, 2 eller 3")
-        attack()
-if enemy.health <= 0: #Spesifisere fienden (gnom)
-    print("Gnomeo pines og venter en smertefull og ikke heroisk død.\n LOL.\n Han er ley seg og vil hjem til hans mor og beelskede Juliet - Gnomeo og Juliet")
-"""
 def attack():
     while enemy.health > 0:
     
@@ -260,7 +230,9 @@ print("Du våkner og ser deg rundt i romme ditt. Du kler på deg å står opp fr
 gameend = False
 spill.nåverendreRom.visRom()
 while not gameend:
+
     spillerinput = input("Hva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
+
     if spillerinput == "1":
         print("Hva vil se se nermere på?")
         spill.interact()
@@ -272,6 +244,7 @@ while not gameend:
     if spillerinput == "hjelp":
         soverom.hjelp()
 
-
-
-print("Spillet er over, dette var en Beta versjon")
+#Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
+end_time = datetime.now()
+#Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
+print('Duration: {}'.format(end_time - start_time))
