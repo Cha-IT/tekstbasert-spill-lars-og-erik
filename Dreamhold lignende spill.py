@@ -1,4 +1,9 @@
+#Importerer random som rd. Bruker rd til å kaste terning og når man skal slås mot gnomen
 import random as rd
+# Importerer datetime sånn at jeg kan ta tiden
+from datetime import datetime
+# Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
+start_time = datetime.now()
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom,loot = 0):
@@ -10,11 +15,15 @@ class Spiller:
             if verdi == None:
                 pass
             else:
-                print(f"Retning: {noekkel}, Rom: {verdi.navn}.")
+                print(f"Mulige rettninger å gå {noekkel} som følger deg til {verdi.navn}.")
+
         retning=input("")
         if retning == "n" or retning =="e" or retning =="w"or retning =="s":
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
             print(f"Du har annkommet {spill.nåverendreRom.navn}")
+
+        #TODO
+
 
     def interact(self):
         for i in spill.nåverendreRom.poi:
@@ -33,6 +42,7 @@ class Spiller:
             spørsemål = input("Ja eller nei? \nsvar: ")
             if spørsemål.lower() == "ja":
                 spill.melk()
+
         if spillerinput.lower() == "gnom" and spill.nåverendreRom == kott:
             print("gnomen er pedofil og vil sloss med deg")
             attack()
@@ -41,6 +51,7 @@ class Spiller:
             return
         if spillerinput.lower() =="glass med melk":
             return
+
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
@@ -168,8 +179,10 @@ gnom = enemy("Gnomeo", 40, 3, 2, "Nøkkel1")
 
 #pve rollespill
 def gnomhelse():
+
     if gnom.health <= 0:
         print("Gnomeo pines og venter en smertefull og ikke heroisk død.\n LOL.\n Han er ley seg og vil hjem til hans mor og beelskede Juliet - Gnomeo og Juliet")
+
 
 def attack():
     while gnom.health > 0:
@@ -222,9 +235,9 @@ print("Du våkner og ser deg rundt i romme ditt. Du kler på deg å står opp fr
 gameend = False
 spill.nåverendreRom.visRom()
 while not gameend:
-    spillerinput = input("\nHva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
+    spillerinput = input("Hva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
     if spillerinput == "1":
-        print("\nHva vil se se nermere på?")
+        print("Hva vil se se nermere på?")
         spill.interact()
     if spillerinput == "2":
         print("\nHvilken rettning vil du gå?")
@@ -234,6 +247,7 @@ while not gameend:
     if spillerinput == "hjelp":
         soverom.hjelp()
 
-
-
-print("Spillet er over, dette var en Beta versjon")
+#Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
+end_time = datetime.now()
+#Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
+print('Duration: {}'.format(end_time - start_time))
