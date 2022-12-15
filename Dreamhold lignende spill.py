@@ -27,7 +27,6 @@ class Spiller:
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
             print(f"Du har annkommet {spill.nåverendreRom.navn}")
 
-        #TODO
 
 
     def interact(self):
@@ -68,9 +67,6 @@ class Spiller:
         print("Hvorfor gjore jeg det. Faen jeg må spy")
         print("Du springer innpå badet og spyr i doen. Deretter trekker du opp.")
         self.nåverendreRom = bad
-
-#    def gnomen(self):
-#       print("test")
 
 class Sener:
     """Info om classen Sener."""
