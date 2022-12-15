@@ -3,9 +3,13 @@ import random as rd
 # Importerer datetime sånn at jeg kan ta tiden
 from datetime import datetime
 # Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
-modus = input("Hvilke modus vil du spille i?\n1. vanlig \n2. speedrun modus")
+modus = input("Hvilke modus vil du spille i?\n1. vanlig \n2. speedrun modus\nSkriv inn hær: ")
 if modus == "2":
     start_time = datetime.now()
+if modus =="1":
+    pass
+else:
+    print("Du må skrive inn modus 1 eller 2")
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom,loot = 0):
@@ -48,6 +52,7 @@ class Spiller:
         if spillerinput.lower() == "gnom" and spill.nåverendreRom == kott:
             print("gnomen er pedofil og vil sloss med deg")
             attack()
+            return
 
         elif spillerinput.lower() in spill.nåverendreRom.poi:
             return
@@ -175,7 +180,7 @@ class enemy:
         self.strength = strength
         self.defence = defence
 
-gnom = enemy("Gnomeo", 40, 3, 2,)
+gnom = enemy("Gnomeo", 80, 3, 2,)
 
 #pve rollespill
 def gnomhelse():
@@ -215,12 +220,12 @@ def attack():
             sjanse = rd.randint(1,4)
             if sjanse != 4:
                 print("Du slår og sparker fienden med en syk kombo")
-                print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
+                print(f"fienden mister 50 liv og har igjen {gnom.health - angrip[valg]} liv")
                 gnom.health = gnom.health - angrip[valg]
                 gnomhelse()
             else:
                 print("du dreit deg ut")
-                valg = 0
+                valg = "0"
                 gnom.health = gnom.health - angrip[valg]
                 gnomhelse()
         else:
@@ -228,8 +233,7 @@ def attack():
 
 
 # her skjer spillet:
-#navn=input("Hva heter du?\nSkriv inn her: ")
-navn = "test"
+navn=input("Hva heter du?\nSkriv inn her: ")
 spill = Spiller(navn,soverom)
 print("Du våkner og ser deg rundt i romme ditt. Du kler på deg å står opp fra senga. Skriv hjelp for å få hjelp om hva du kan gjøre videre.")
 gameend = False
@@ -246,8 +250,15 @@ while not gameend:
         spill.nåverendreRom.visRom()
     if spillerinput == "hjelp":
         soverom.hjelp()
+    if gnom.health <= 0:
+        gameend = True
+print("Du finner en pokal i gnomes enorme sekk")
+print("GG! Du vant og fortsatte dagen din som om det var en helt vanelig dag.")
+print("Takk for at du spilte. Dette er en beta versjon så stay tuned. :3 OwO")
 if modus == "2":
     #Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
     end_time = datetime.now()
     #Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
     print('Duration: {}'.format(end_time - start_time))
+if modus == "1":
+    print("prøv speedrun modus neste gang :)")
