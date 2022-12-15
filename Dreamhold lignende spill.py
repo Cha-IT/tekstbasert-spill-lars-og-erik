@@ -3,7 +3,9 @@ import random as rd
 # Importerer datetime sånn at jeg kan ta tiden
 from datetime import datetime
 # Når programmet startet får denne variabelen til verdien som klokka hadde når man startet programmet
-start_time = datetime.now()
+modus = input("Hvilke modus vil du spille i?\n1. vanlig \n2. speedrun modus")
+if modus == "2":
+    start_time = datetime.now()
 class Spiller:
     """Info om klassen spiller."""
     def __init__(self,navn,nåverendeRom,loot = 0):
@@ -51,7 +53,6 @@ class Spiller:
             return
         if spillerinput.lower() =="glass med melk":
             return
-
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
@@ -115,7 +116,7 @@ badpoi = {
     "tannbørste":"Det står en rosa jordan tannbørste oppi en gul kopp. Den ser litt sliten ut.",
     "tannkrem":"Tannkremen ser helt flat ut. Får se om jeg klarer og presse ut for nokk til en dag til.",
     "dopapir":"Det ser ut som jeg må kjøpe mer dopapir. Begynner å gå tom.",
-    "Dør til øst":"Denne døren tar deg inn tilbake til stuen"
+    "dør til øst":"Denne døren tar deg inn tilbake til stuen"
 }
 kottpoi = {
     "gnom":"Det står en gnom mitt på rommet. Hvorfor står det en gnom midt på rommet. Den ser ikke snill ut.",
@@ -168,14 +169,13 @@ kott.addnaboRom(kottrom)
 
 #Fiender?
 class enemy:
-    def __init__(self, name, health, strength, defence, loot):
+    def __init__(self, name, health, strength, defence):
         self.name = name
         self.health = health
         self.strength = strength
         self.defence = defence
-        self.loot = loot
 
-gnom = enemy("Gnomeo", 40, 3, 2, "Nøkkel1")
+gnom = enemy("Gnomeo", 40, 3, 2,)
 
 #pve rollespill
 def gnomhelse():
@@ -246,8 +246,8 @@ while not gameend:
         spill.nåverendreRom.visRom()
     if spillerinput == "hjelp":
         soverom.hjelp()
-
-#Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
-end_time = datetime.now()
-#Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
-print('Duration: {}'.format(end_time - start_time))
+if modus == "2":
+    #Hær får en ny variabel verdien til klokkeselttet når koden har kommet seg hit til slutten
+    end_time = datetime.now()
+    #Hær regner den ut hvor mye tid du har brukt på å spille ferdig dette spillet
+    print('Duration: {}'.format(end_time - start_time))
