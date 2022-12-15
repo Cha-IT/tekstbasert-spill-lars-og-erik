@@ -16,11 +16,14 @@ class Spiller:
                 pass
             else:
                 print(f"Mulige rettninger å gå {noekkel} som følger deg til {verdi.navn}.")
+                
         retning=input("")
         if retning == "n" or retning =="e" or retning =="w"or retning =="s":
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
             print(f"Du har annkommet {spill.nåverendreRom.navn}")
+
         #TODO
+
 
     def interact(self):
         for i in spill.nåverendreRom.poi:
@@ -39,13 +42,16 @@ class Spiller:
             spørsemål = input("Ja eller nei? \nsvar: ")
             if spørsemål.lower() == "ja":
                 spill.melk()
+
+        if spillerinput.lower() == "gnom" and spill.nåverendreRom == kott:
+            print("gnomen er pedofil og vil sloss med deg")
+            attack()
+
         elif spillerinput.lower() in spill.nåverendreRom.poi:
             return
         if spillerinput.lower() =="glass med melk":
             return
-        if spillerinput.lower() == "gnom":
-            
-            pass
+
         else:
             print("Du må skrive inn en av objektene over.\nPrøv igjen ")
             spill.interact()
@@ -58,6 +64,8 @@ class Spiller:
         print("Du springer innpå badet og spyr i doen. Deretter trekker du opp.")
         self.nåverendreRom = bad
 
+#    def gnomen(self):
+#       print("test")
 
 class Sener:
     """Info om classen Sener."""
@@ -170,13 +178,13 @@ gnom = enemy("Gnomeo", 40, 3, 2,)
 
 #pve rollespill
 def gnomhelse():
-    if enemy.health <= 0:
-        print("Gnomeo er død")
-        print("Han slapp noe skinner og ligger på bakken bak han") #Her kan nøkkel ligg eller nokka sånt
+
+    if gnom.health <= 0:
+        print("Gnomeo pines og venter en smertefull og ikke heroisk død.\n LOL.\n Han er ley seg og vil hjem til hans mor og beelskede Juliet - Gnomeo og Juliet")
+
 
 def attack():
-    while enemy.health > 0:
-    
+    while gnom.health > 0:
         print("Velg ditt angrep")
         valg = input("1. Normal attack \n2. Special attack \n3. Super attack \n (25% Success rate)")
 
@@ -188,31 +196,31 @@ def attack():
 
         if valg == "1":
             angrep = "Normal attack"
-            print("Du slår fienden")
+            print("Du tar kniven i kottet og stikker gnomen i foten")
             print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-            enemy.health = enemy.health - angrip[valg]
+            gnom.health = gnom.health - angrip[valg]
             gnomhelse()
 
         elif valg == "2":
             angrep = "special attack"
-            print("Du sparker fienden")
+            print("Du tar kniven i kottet og kastrer en testikkel")
             print(f"du bruker et {angrep}, fienden mister {angrip[valg]} liv og har igjen {gnom.health - angrip[valg]} liv")
-            enemy.health = enemy.health - angrip[valg]
+            gnom.health = gnom.health - angrip[valg]
             gnomhelse()
 
         elif valg == "3":
             angrep = "super attack"
-            print("Du løper mot fienden for å angripe alt du kan")
+            print("Du tar kniven i kottet og stikker gnomen i øyet")
             sjanse = rd.randint(1,4)
             if sjanse != 4:
                 print("Du slår og sparker fienden med en syk kombo")
                 print(f"fienden mister 50 liv og har igjen {gnom.health - 50} liv")
-                enemy.health = enemy.health - angrip[valg]
+                gnom.health = gnom.health - angrip[valg]
                 gnomhelse()
             else:
                 print("du dreit deg ut")
                 valg = 0
-                enemy.health = enemy.health - angrip[valg]
+                gnom.health = gnom.health - angrip[valg]
                 gnomhelse()
         else:
             print("velg alternativ 1, 2 eller 3")
@@ -226,14 +234,12 @@ print("Du våkner og ser deg rundt i romme ditt. Du kler på deg å står opp fr
 gameend = False
 spill.nåverendreRom.visRom()
 while not gameend:
-
     spillerinput = input("Hva vil du nå?\n1. Interact\n2. Gå til et annet rom\n3. Se rom\nSkriv inn hær: ")
-
     if spillerinput == "1":
         print("Hva vil se se nermere på?")
         spill.interact()
     if spillerinput == "2":
-        print("Hvilken rettning vil du gå?")
+        print("\nHvilken rettning vil du gå?")
         spill.go()
     if spillerinput == "3":
         spill.nåverendreRom.visRom()
