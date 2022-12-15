@@ -16,9 +16,6 @@ class Spiller:
                 pass
             else:
                 print(f"Mulige rettninger å gå {noekkel} som følger deg til {verdi.navn}.")
-
-                print(f"Retning: {noekkel}, Rom: {verdi.navn}.")
-
         retning=input("")
         if retning == "n" or retning =="e" or retning =="w"or retning =="s":
             self.nåverendreRom =  self.nåverendreRom.naborom[retning]
