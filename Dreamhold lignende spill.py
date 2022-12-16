@@ -129,7 +129,7 @@ stuepoi = {
 }
 kjøkkenpoi ={
     "glass med melk":"Det står et halvfult glass med melk på kjøkkenbenken. Uvist om hvor lenge den har stått der",
-    "brød":"Det ligger brød på kjøkken benken. Det ser ut som om noen har tatt en bit rett ut ifra brødskiva istede for å skjere den opp. Merkene på brødskiven ser veldig likt ut til gnome tenner tenker du for deg selv. Ikke spørr hvfor du veit det.",
+    "brød":"Det ligger brød på kjøkken benken. Det ser ut som om noen har tatt en bit rett ut ifra brødskiva istede for å skjere den opp. Merkene på brødskiven ser veldig likt ut til gnome tenner tenker du for deg selv. Ikke spørr hvorfor du veit det.",
     "dør mot vest":"Denne døren tar deg inn tilbake til stuen."
 }
 badpoi = {
